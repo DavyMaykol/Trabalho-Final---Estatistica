@@ -1,5 +1,5 @@
 
-#=======================LIMPEZA DO ABLIENTE=====================================
+#=======================LIMPEZA DO AMBIENTE=====================================
 #limpa objetos do workspace e previne conflitos
 rm(list = ls())
 
