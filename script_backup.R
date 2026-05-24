@@ -173,7 +173,7 @@ api_jovem_sp <- api_jovem_br %>%
 api_jovem_sp <- api_jovem_sp %>%
   # Filtro por município
   dplyr::filter(str_ends(municipio, " - SP")) %>%
-  # A tabela original uma linha com as pessoas e uma linha com percentual total, vou pegar o percentual
+  # A tabela original possui uma linha com as pessoas e uma linha com percentual total, vou pegar o percentual
   dplyr::filter(unidade_de_medida_codigo == "2") %>%
   # Converter o valor para numérico
   dplyr::mutate(valor = as.numeric(valor)) %>%
@@ -188,45 +188,18 @@ api_jovem_sp <- api_jovem_sp %>%
 df_final_sp <- df_final_sp %>%
   dplyr::left_join(api_jovem_sp, by = c("cod_municipio" = "codigo")) %>%
   mutate()
-select(municipio, cod_municipio, populacao_2022, total_vitima, taxa_100mil, pib_per_capita, aglomerados, analfabetismo, perc_pop_jovem = pop_jovem_total)
+  select(municipio, cod_municipio, populacao_2022, total_vitima, taxa_100mil, pib_per_capita, aglomerados, analfabetismo, perc_pop_jovem = pop_jovem_total)
 
 # CONFERÊNCIA PARTE 2.2 E)
 
-print("Estrutura do Banco de Dados com Percentual de Jovens:")
-print(names(df_final_sp))
-
-print("Resumo Estatístico da Proporção de Jovens nos Municípios Paulistas:")
-summary(df_final_sp$perc_pop_jovem)
-
-print("Amostra das 10 primeiras cidades com TODAS as variáveis integradas:")
-df_final_sp %>% head(10)
-
-write_csv2(df_final_sp, "p2_2_e_db_com_percentual_jovens.csv")
-
-# =========================================================================
-# 2.2 f) Beneficiários do Bolsa Família (IPEADATAR)
-# =========================================================================
-
-
-#=========================================================================
-# 2.3 Construção do Modelo
-#=========================================================================
-
-#=========================================================================
-# 2.4 Análise do Modelo
-#=========================================================================
-
-#=========================================================================
-# 2.5 Ajuste do Modelo
-#=========================================================================
-
-#=========================================================================
-# 2.6 Simplificando o Modelo
-#=========================================================================
-
-#=========================================================================
-# 2.7 Customizando o Modelo
-#=========================================================================
-
-
+  print("Estrutura do Banco de Dados com Percentual de Jovens:")
+  print(names(df_final_sp))
+  
+  print("Resumo Estatístico da Proporção de Jovens nos Municípios Paulistas:")
+  summary(df_final_sp$perc_pop_jovem)
+  
+  print("Amostra das 10 primeiras cidades com TODAS as variáveis integradas:")
+  df_final_sp %>% head(10)
+  
+    write_csv2(df_final_sp, "p2_2_e_db_com_percentual_jovens.csv")
 
